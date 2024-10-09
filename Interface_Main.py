@@ -11,7 +11,7 @@ class FitnessApp:
     def __init__(self, master):
         self.master = master
         self.master.title("Fitness Tracker")
-        self.master.geometry("500x400")
+        self.master.geometry("500x500")
         self.main_frame = ttk.Frame(self.master, padding="10")
         self.main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         self.data = None
@@ -81,7 +81,7 @@ class FitnessApp:
         self.clear_frame()
         ttk.Label(self.main_frame, text="Select the Type of Workout", font=("Arial", 16)).grid(column=0, row=0, columnspan=2, pady=10)
         ttk.Button(self.main_frame, text="Get Workout Program", command=self.create_program_view).grid(column=0, row=1, pady=5, padx=5, sticky=tk.W+tk.E)
-        ttk.Button(self.main_frame, text="Get Workout Movements", command=self.get_workout_movements).grid(column=0, row=2, pady=5, padx=5, sticky=tk.W+tk.E)
+        ttk.Button(self.main_frame, text="Get Workout Movements", command=self.movements_view).grid(column=0, row=2, pady=5, padx=5, sticky=tk.W+tk.E)
         ttk.Button(self.main_frame, text="Outdoor Activities", command=self.outdoor_activities).grid(column=0, row=3, pady=5, padx=5, sticky=tk.W+tk.E)
         ttk.Button(self.main_frame, text="Back to Main Menu", command=self.create_main_view).grid(column=0, row=4, pady=5, padx=5, sticky=tk.W+tk.E)
 
@@ -141,8 +141,6 @@ class FitnessApp:
 
             text_widget.insert(tk.END, details)
             text_widget.config(state=tk.DISABLED)  # Make the text read-only
-
-            # Add a scrollbar
             
             text_widget.configure(font=("TkDefaultFont", 10))
 
@@ -155,7 +153,71 @@ class FitnessApp:
             print(f"Error in display_random_program: {str(e)}")  # Debug print
             self.create_program_view()
    
+    def movements_view(self):
+        self.clear_frame()
+        ttk.Label(self.main_frame, text="Select Workout Movement", font=("Arial", 16)).grid(column=0, row=0, columnspan=2, pady=10)
+
+        # Muscle group dropdown
+        ttk.Label(self.main_frame, text="Muscle Group:").grid(column=0, row=1, sticky=tk.W, pady=5)
+        muscle_groups = ["Chest", "Back", "Shoulders", "Legs", "Triceps", "Core", "Biceps"]  # Add more as needed
+        self.muscle_group_dropdown = ttk.Combobox(self.main_frame, values=muscle_groups)
+        self.muscle_group_dropdown.grid(column=1, row=1, sticky=tk.W, pady=5)
+        self.muscle_group_dropdown.set(muscle_groups[0])  # Set default value
+
+        # Equipment type dropdown
+        ttk.Label(self.main_frame, text="Equipment:").grid(column=0, row=2, sticky=tk.W, pady=5)
+        equipment_types = ["any", "barbell", "dumbbell", "machine", "cable"]
+        self.equipment_dropdown = ttk.Combobox(self.main_frame, values=equipment_types)
+        self.equipment_dropdown.grid(column=1, row=2, sticky=tk.W, pady=5)
+        self.equipment_dropdown.set(equipment_types[0])  # Set default value
+
+        ttk.Button(self.main_frame, text="Get a movement", command=self.find_movements).grid(column=0, row=3, columnspan=2, pady=10)
+        ttk.Button(self.main_frame, text="Back to Workout Selection", command=self.create_workout_view).grid(column=0, row=4, columnspan=2, pady=5)
+
+
+    def find_movements(self):
+        muscle_group = self.muscle_group_dropdown.get().strip().lower()
+        equipment_type = self.equipment_dropdown.get().strip().lower()
+        self.display_random_movement(muscle_group, equipment_type)
+
+    def display_random_movement(self, muscle_group, equipment_type):
+        self.clear_frame()
+        try:
+            movements = self.data.getMovements(muscle_group, equipment_type)
+            if not movements:
+                messagebox.showinfo("No Movements", "No movements found for the selected criteria.")
+                self.movements_view()
+                return
+            
+            movement = random.choice(movements)
+
+            ttk.Label(self.main_frame, text="Recommended Workout Movement", font=("Arial", 16)).grid(column=0, row=0, columnspan=2, pady=10)
+
+            text_widget = tk.Text(self.main_frame, wrap=tk.WORD, width=60, height=15)
+            text_widget.grid(column=0, row=1, columnspan=2, pady=5, padx=5, sticky="nsew")
+
+            details = f"Movement: {movement.get('title', 'Unnamed Movement')}\n"
+            details += f"URL: {movement.get('url', 'N/A')}\n\n"
+            details += f"How to do it:\n{movement.get('how', 'N/A')}\n\n"
+            details += f"Muscle Group: {muscle_group.capitalize()}\n"
+            details += f"Equipment: {equipment_type.capitalize()}"
+
+            text_widget.insert(tk.END, details)
+            text_widget.config(state=tk.DISABLED)  # Make the text read-only
+            
+            text_widget.configure(font=("TkDefaultFont", 10))
+
+            ttk.Button(self.main_frame, text="Get Another Movement", command=lambda: self.display_random_movement(muscle_group, equipment_type)).grid(column=0, row=2, columnspan=2, pady=5)
+            ttk.Button(self.main_frame, text="Back to Selection", command=self.movements_view).grid(column=0, row=3, columnspan=2, pady=5)
+            ttk.Button(self.main_frame, text="Back to Main Menu", command=self.create_main_view).grid(column=0, row=4, columnspan=2, pady=5)
+
+        except Exception as e:
+            messagebox.showerror("Error", f"An error occurred: {str(e)}")
+            print(f"Error in display_random_movement: {str(e)}")  # Debug print
+            self.movements_view()
    
+
+
     def clear_frame(self):
         for widget in self.main_frame.winfo_children():
             widget.destroy()
@@ -180,12 +242,7 @@ class FitnessApp:
         self.data = dataprocessing.Dataprocessing("scrape")
         self.create_main_view()
 
-    def get_workout_movements(self):
-        muscle_group = tk.simpledialog.askstring("Input", "Enter muscle group:")
-        if muscle_group:
-            # Call function to get workout movements recommendations
-            messagebox.showinfo("Workout Movements", f"Recommended movements for {muscle_group}: ...")
-
+    
     def outdoor_activities(self):
         location = simpledialog.askstring("get the weather info", "Enter your location:")
         if location:
