@@ -3,6 +3,7 @@ import requests
 # API key directly in the script (Not recommended for security reasons)
 WEATHERAPI_KEY = '833822cc41704d9cb4d174049241709'
 
+# some codes are modified/suggested by ChatGPT
 def get_weather(location):
     # Construct the API URL
     base_url = "http://api.weatherapi.com/v1/current.json"

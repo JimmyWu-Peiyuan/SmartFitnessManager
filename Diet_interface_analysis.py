@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.options import Options
 
 # Reference: In this part, anything related to the usage of selenium package is under help with ChatGPT.
 
+# some codes are modified/suggested by ChatGPT
 def parse_composition_page(url_driver):
     # Initialize a list to store the data
     data_list = []

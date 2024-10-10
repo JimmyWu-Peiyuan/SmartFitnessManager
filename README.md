@@ -10,8 +10,9 @@ SmartFitnessManager is a Python-based application that focuses on two primary fu
 
 ## Features
 
-- **Calorie Tracking**: Input your meals and receive data on calories consumed.
+- **Calories Tracking**: Input your meals and receive data on calories consumed.
 - **Workout Suggestions**: Based on your fitness data, receive workout recommendations tailored to your goals.
+- **Weekly intake visualization**: Outside of the main Graphic user interface, the application also provides a console application specifically for the analysis and visualizations of weekly intake.
 
 ## Installation Guide
 Follow these detailed steps to correctly set up **SmartFitnessManager** on your local machine:
@@ -66,6 +67,9 @@ Start the main interface by running:
 ```bash
 python Interface_Main.py
 ```
+- When first got into the application, it's going to prompt user a choice to use pre-scraped data or scrape new information from online resources. Scraping new information may take up to 30+ minutes. For simply usage, it is recommended to use existing scraped data.
+
+- The user can then choose to measure their daily calories or choose to get recommended a workout. 
 
 If any errors occur during runtime (such as missing modules or dependencies), ensure all packages are installed and check the error log for specific issues.
 

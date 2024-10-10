@@ -7,6 +7,7 @@ import pandas as pd
 import random
 # pip install lxml
 
+# some codes are modified/suggested by ChatGPT
 class FitnessApp:
     def __init__(self, master):
         self.master = master

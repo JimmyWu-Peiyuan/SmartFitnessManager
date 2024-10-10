@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import time
 
+# some codes are modified/suggested by ChatGPT
+
 def scrape_muscle_programs():
     # Set up the Selenium WebDriver
     driver = webdriver.Chrome()  # Make sure ChromeDriver is installed and in your PATH
