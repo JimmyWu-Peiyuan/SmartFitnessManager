@@ -1,4 +1,3 @@
-Here is the content in code format for easy copy-pasting into your README file:
 
 ```markdown
 # SmartFitnessManager
@@ -95,17 +94,13 @@ python Interface_Main.py
 
 If any errors occur during runtime (such as missing modules or dependencies), ensure all packages are installed and check the error log for specific issues.
 
-### 7. Additional Configuration (Optional)
-- **API Keys/Data Resources**: If the application requires any API keys or external datasets (as mentioned in the project documentation), make sure you follow the appropriate steps to configure them.
-- **Database Setup**: If there's a need to initialize a database, ensure that all migrations or database configuration steps are completed.
-
-### 8. Deactivating the Virtual Environment
+### 7. Deactivating the Virtual Environment
 When you're done using the project, deactivate the virtual environment by running:
 ```bash
 deactivate
 ```
 
-### 9. Updating the Project
+### 8. Updating the Project
 To update your local copy of the project, pull the latest changes from the repository:
 ```bash
 git pull origin main
