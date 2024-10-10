@@ -63,6 +63,8 @@ python -m venv venv
 Your command prompt should now show the virtual environment's name, indicating that it's active.
 
 ### 5. Running the GUI Application for the First Time
+You can refer to the youtube link for a run-through of the application: https://www.youtube.com/watch?v=AsufQBc7Utc
+
 Start the main interface by running:
 ```bash
 python Interface_Main.py
