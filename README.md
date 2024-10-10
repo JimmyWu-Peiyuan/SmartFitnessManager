@@ -61,30 +61,7 @@ python -m venv venv
 
 Your command prompt should now show the virtual environment's name, indicating that it's active.
 
-### 4. Install Required Dependencies
-Once the virtual environment is activated, install the required libraries by running:
-
-```bash
-pip install -r requirements.txt
-```
-
-This will install all dependencies listed in `requirements.txt`.
-
-#### If `requirements.txt` Fails:
-If the installation fails, try upgrading `pip` and retry:
-```bash
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-### 5. Verify the Installation
-Once all dependencies are installed, verify that there are no issues by running:
-```bash
-pip check
-```
-This will ensure all packages are correctly installed and compatible.
-
-### 6. Running the Application for the First Time
+### 5. Running the Application for the First Time
 Start the main interface by running:
 ```bash
 python Interface_Main.py
@@ -92,13 +69,13 @@ python Interface_Main.py
 
 If any errors occur during runtime (such as missing modules or dependencies), ensure all packages are installed and check the error log for specific issues.
 
-### 7. Deactivating the Virtual Environment
+### 6. Deactivating the Virtual Environment
 When you're done using the project, deactivate the virtual environment by running:
 ```bash
 deactivate
 ```
 
-### 8. Updating the Project
+### 7. Updating the Project
 To update your local copy of the project, pull the latest changes from the repository:
 ```bash
 git pull origin main
