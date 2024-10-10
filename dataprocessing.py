@@ -11,6 +11,7 @@ class Dataprocessing:
             self.fatloss_program = scrape_fatloss_program.scrape_fat_loss_programs()
             self.musclebuilding_program = scrape_muscle_program.scrape_muscle_programs()
             self.ingredients = scrape_ingredients.scrape_ingredients()
+            self.movements = pd.read_csv("ScrapedData/workout_movements.csv")
         else:
             self.athome_program = pd.read_csv("ScrapedData/athome_programs.csv")
             self.fatloss_program = pd.read_csv("ScrapedData/fatloss_programs.csv")
