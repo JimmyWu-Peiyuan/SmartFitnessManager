@@ -1,5 +1,3 @@
-
-```markdown
 # SmartFitnessManager
 
 **Data-Focused Python Course Final Project**
@@ -126,4 +124,3 @@ git pull origin main
 - **`Interface_Main.py`**: Launches the main application interface.
 - **`dataprocessing.py`**: Handles data manipulation and analysis.
 - **`ingredients_analysis.py`**: Analyzes food ingredients for accurate calorie tracking.
-```
