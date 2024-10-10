@@ -3,7 +3,7 @@
 **Data-Focused Python Course Final Project**
 
 ## Overview
-SmartFitnessManager is a Python-based application that focuses on two primary functionalities:
+SmartFitnessManager is a Python-based GUI application that focuses on two primary functionalities:
 
 1. **Calorie Tracking** – Track your daily caloric intake based on the foods you consume.
 2. **Workout Suggestions** – Get personalized workout suggestions to help meet your fitness goals.
@@ -62,7 +62,7 @@ python -m venv venv
 
 Your command prompt should now show the virtual environment's name, indicating that it's active.
 
-### 5. Running the Application for the First Time
+### 5. Running the GUI Application for the First Time
 Start the main interface by running:
 ```bash
 python Interface_Main.py
@@ -72,6 +72,11 @@ python Interface_Main.py
 - The user can then choose to measure their daily calories or choose to get recommended a workout. 
 
 If any errors occur during runtime (such as missing modules or dependencies), ensure all packages are installed and check the error log for specific issues.
+
+### 5.2 Running the console application for calories visualizations
+- The user can also use a console interface to visualize a weekly calories intake and with trends and pie chart
+- Can do so by running `Diet_interface_analysis.py`, which contains a console application. 
+
 
 ### 6. Deactivating the Virtual Environment
 When you're done using the project, deactivate the virtual environment by running:
